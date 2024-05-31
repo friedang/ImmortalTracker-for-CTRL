@@ -49,13 +49,16 @@ def main(data_folder, out_folder):
 
 
 if __name__ == '__main__':
-    if args.test:
-        args.data_folder=os.path.join(args.data_folder, 'testing')
-        args.output_folder=os.path.join(args.output_folder, 'testing')
-    else:
-        args.data_folder=os.path.join(args.data_folder, 'validation')
-        args.output_folder=os.path.join(args.output_folder, 'validation')
+    # if args.test:
+    #     args.data_folder=os.path.join(args.data_folder, 'testing')
+    #     args.output_folder=os.path.join(args.output_folder, 'testing')
+    # else:
+    #     args.data_folder=os.path.join(args.data_folder, 'validation')
+    #     args.output_folder=os.path.join(args.output_folder, 'validation')
+    args.data_folder=os.path.join(args.data_folder, 'training')
+    args.output_folder=os.path.join(args.output_folder, 'training')
     args.output_folder = os.path.join(args.output_folder, 'ts_info')
+    # import pdb; pdb.set_trace()
     if not os.path.exists(args.output_folder):
         os.makedirs(args.output_folder)
     main(args.data_folder, args.output_folder)

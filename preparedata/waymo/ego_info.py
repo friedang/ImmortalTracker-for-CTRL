@@ -90,12 +90,14 @@ def main(token, process_num, data_folder, output_folder):
 
 
 if __name__ == '__main__':
-    if args.test:
-        args.data_folder=os.path.join(args.data_folder, 'testing')
-        args.output_folder=os.path.join(args.output_folder, 'testing')
-    else:
-        args.data_folder=os.path.join(args.data_folder, 'validation')
-        args.output_folder=os.path.join(args.output_folder, 'validation')
+    # if args.test:
+    #     args.data_folder=os.path.join(args.data_folder, 'training')
+    #     args.output_folder=os.path.join(args.output_folder, 'training')
+    # else:
+    #     args.data_folder=os.path.join(args.data_folder, 'validation')
+    #     args.output_folder=os.path.join(args.output_folder, 'validation')
+    args.data_folder=os.path.join(args.data_folder, 'training')
+    args.output_folder=os.path.join(args.output_folder, 'training')
     args.output_folder = os.path.join(args.output_folder, 'ego_info')
     if not os.path.exists(args.output_folder):
         os.makedirs(args.output_folder)

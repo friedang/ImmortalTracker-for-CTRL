@@ -22,5 +22,6 @@ data_loader:
   nms_thres: 0.25
   backward: False
 
-merge:
-  max_time_since_update: 10
+## ONLY FOR INFERENCE
+# merge:
+#   max_time_since_update: 10
