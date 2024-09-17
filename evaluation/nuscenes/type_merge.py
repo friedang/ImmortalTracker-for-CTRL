@@ -6,7 +6,7 @@ from mot_3d.data_protos import BBox, Validity
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--name', type=str, default='immortal')
-parser.add_argument('--obj_types', default='car,bus,trailer,truck,pedestrian,bicycle,motorcycle')
+parser.add_argument('--obj_types', default='car,bus,trailer,truck,pedestrian,bicycle,motorcycle,construction_vehicle,barrier,traffic_cone')
 parser.add_argument('--result_folder', type=str, default='./mot_results/nuscenes/')
 parser.add_argument('--mode', type=str, default='2hz', choices=['20hz', '2hz'])
 parser.add_argument('--test', action='store_true', default=False)

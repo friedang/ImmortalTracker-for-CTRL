@@ -1,3 +1,7 @@
+RUN
+bash preparedata/waymo/waymo_preparedata.sh /mnt/Drive/HDD2/waymo_open_dataset_v_1_2_0/waymo/waymo_format/case_real
+bash preparedata/waymo/waymo_convert_detection.sh /mnt/Drive/HDD2/waymo_open_dataset_v_1_2_0/waymo/work_dirs/fsd_waymoD1_1x_3f/results.bin CTRL_FSD_TTA
+bash run_mot.sh
 # Immortal_tracker for CTRL
 ## This is a modified unofficial version of [ImmortalTracker](https://github.com/ImmortalTracker/ImmortalTracker), tailored to easier use for CTRL. We make the follow modifications:
 
@@ -101,6 +105,7 @@ Follow https://github.com/nutonomy/nuscenes-devkit to build the official evaluat
 ```
 #To convert tracking results into .json format
 bash evaluation/nuscenes/pipeline.sh immortal
+
 #To evaluate
 python <path to nuscenes-devkit>/nuscenes-devkit/python-sdk/nuscenes/eval/tracking/evaluate.py \
 "./mot_results/nuscenes/validation_2hz/immortal/results/results.json" \

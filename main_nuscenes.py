@@ -18,7 +18,7 @@ parser.add_argument('--process', type=int, default=1)
 parser.add_argument('--visualize', action='store_true', default=False)
 parser.add_argument('--skip', action='store_true', default=False)
 parser.add_argument('--start_frame', type=int, default=0, help='start at a middle frame for debug')
-parser.add_argument('--obj_types', default='car,bus,trailer,truck,pedestrian,bicycle,motorcycle')
+parser.add_argument('--obj_types', default='car,bus,trailer,truck,pedestrian,bicycle,motorcycle,construction_vehicle,barrier,traffic_cone')
 # paths
 parser.add_argument('--config_path', type=str, default='configs/nu_configs/immortal.yaml')
 parser.add_argument('--result_folder', type=str, default='./mot_results/nuscenes')
@@ -89,10 +89,11 @@ def sequence_mot(configs, data_loader, obj_type, sequence_id, gt_bboxes=None, gt
             
         # mot
         results = tracker.frame_mot(frame_data)
-        result_pred_bboxes = [trk[0] for trk in results]
-        result_pred_ids = [trk[1] for trk in results]
-        result_pred_states = [trk[2] for trk in results]
-        result_types = [trk[3] for trk in results]
+        # import ipdb; ipdb.set_trace()
+        result_pred_bboxes = [trk['bboxes'] for trk in results]
+        result_pred_ids = [trk['id'] for trk in results]
+        result_pred_states = [trk['state'] for trk in results]
+        result_types = [trk['type'] for trk in results]
 
         # visualization
         if visualize:
@@ -110,6 +111,7 @@ def sequence_mot(configs, data_loader, obj_type, sequence_id, gt_bboxes=None, gt
 
 
 def main(name, obj_types, config_path, data_folder, det_data_folder, result_folder, start_frame=0, token=0, process=1):
+    # import ipdb; ipdb.set_trace()
     for obj_type in obj_types:
         summary_folder = os.path.join(result_folder, 'summary', obj_type)
         # simply knowing about all the segments
@@ -118,7 +120,11 @@ def main(name, obj_types, config_path, data_folder, det_data_folder, result_fold
             file_names = [fname for fname in file_names if not os.path.exists(os.path.join(summary_folder, fname))]
         
         # load model configs
-        configs = yaml.load(open(config_path, 'r'))
+        configs = yaml.load(open(config_path, 'r'), Loader=yaml.SafeLoader)
+        gpu = configs['running'].get('gpu', False)
+        if gpu:
+            import torch
+            torch.cuda.set_device(token % 2)
     
         for file_index, file_name in enumerate(file_names[:]):
             if file_index % process != token:

@@ -14,7 +14,7 @@ running:
     iou: 0.9
     giou: 1.5
     m_dis: 5
-  gpu: True
+  gpu: False
   score_multiplier: 0.9
 
 data_loader:

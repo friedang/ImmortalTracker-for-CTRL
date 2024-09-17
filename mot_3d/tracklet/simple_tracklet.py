@@ -1,8 +1,8 @@
 import numpy as np
 from ipdb import set_trace
-from waymo_open_dataset import dataset_pb2
-from waymo_open_dataset import label_pb2
-from waymo_open_dataset.protos import metrics_pb2
+# from waymo_open_dataset import dataset_pb2
+# from waymo_open_dataset import label_pb2
+# from waymo_open_dataset.protos import metrics_pb2
 from mot_3d.data_protos import BBox
 
 class SimpleTracklet(object):

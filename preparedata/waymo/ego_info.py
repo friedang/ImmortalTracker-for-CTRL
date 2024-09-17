@@ -28,6 +28,7 @@ parser.add_argument('--output_folder', type=str, default='./data/waymo/',
     help='output folder')
 parser.add_argument('--process', type=int, default=1, help='use multiprocessing for acceleration')
 parser.add_argument('--test', action='store_true', default=False)
+parser.add_argument('--train', action='store_true', default=False)
 args = parser.parse_args()
 
 
@@ -90,14 +91,15 @@ def main(token, process_num, data_folder, output_folder):
 
 
 if __name__ == '__main__':
-    # if args.test:
-    #     args.data_folder=os.path.join(args.data_folder, 'training')
-    #     args.output_folder=os.path.join(args.output_folder, 'training')
-    # else:
-    #     args.data_folder=os.path.join(args.data_folder, 'validation')
-    #     args.output_folder=os.path.join(args.output_folder, 'validation')
-    args.data_folder=os.path.join(args.data_folder, 'training')
-    args.output_folder=os.path.join(args.output_folder, 'training')
+    if args.test:
+        args.data_folder=os.path.join(args.data_folder, 'testing')
+        args.output_folder=os.path.join(args.output_folder, 'testing')
+    elif args.train:
+        args.data_folder=os.path.join(args.data_folder, 'training')
+        args.output_folder=os.path.join(args.output_folder, 'training')
+    else:
+        args.data_folder=os.path.join(args.data_folder, 'validation')
+        args.output_folder=os.path.join(args.output_folder, 'validation')
     args.output_folder = os.path.join(args.output_folder, 'ego_info')
     if not os.path.exists(args.output_folder):
         os.makedirs(args.output_folder)

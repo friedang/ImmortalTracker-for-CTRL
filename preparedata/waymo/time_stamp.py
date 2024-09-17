@@ -21,6 +21,7 @@ parser.add_argument('--output_folder', type=str, default='./data/waymo/',
     help='the location of output information')
 parser.add_argument('--data_folder', type=str, help='location of tfrecords')
 parser.add_argument('--test', action='store_true', default=False)
+parser.add_argument('--train', action='store_true', default=False)
 args = parser.parse_args()
 
 
@@ -49,14 +50,15 @@ def main(data_folder, out_folder):
 
 
 if __name__ == '__main__':
-    # if args.test:
-    #     args.data_folder=os.path.join(args.data_folder, 'testing')
-    #     args.output_folder=os.path.join(args.output_folder, 'testing')
-    # else:
-    #     args.data_folder=os.path.join(args.data_folder, 'validation')
-    #     args.output_folder=os.path.join(args.output_folder, 'validation')
-    args.data_folder=os.path.join(args.data_folder, 'training')
-    args.output_folder=os.path.join(args.output_folder, 'training')
+    if args.test:
+        args.data_folder=os.path.join(args.data_folder, 'testing')
+        args.output_folder=os.path.join(args.output_folder, 'testing')
+    elif args.train:
+        args.data_folder=os.path.join(args.data_folder, 'training')
+        args.output_folder=os.path.join(args.output_folder, 'training')
+    else:
+        args.data_folder=os.path.join(args.data_folder, 'validation')
+        args.output_folder=os.path.join(args.output_folder, 'validation')
     args.output_folder = os.path.join(args.output_folder, 'ts_info')
     # import pdb; pdb.set_trace()
     if not os.path.exists(args.output_folder):

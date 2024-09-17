@@ -115,6 +115,7 @@ def main(name, data_folder, det_folder, file_name, out_folder):
             if segment in segment_name_list[_j]:
                 val_index = _j
                 break
+        # import pdb; pdb.set_trace()
         segment_name = segment_name_list[val_index]
 
         frame_number = None

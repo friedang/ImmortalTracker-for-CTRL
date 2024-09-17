@@ -117,7 +117,7 @@ def main(name, obj_type, config_path, data_folder, det_data_folder, result_folde
     gpu = configs['running'].get('gpu', False)
     if gpu:
         import torch
-        torch.cuda.set_device(token % 8)
+        torch.cuda.set_device(token % 2)
     
     if obj_type == 'vehicle':
         type_token = 1
@@ -127,6 +127,7 @@ def main(name, obj_type, config_path, data_folder, det_data_folder, result_folde
         type_token = 4
     
     for file_index, file_name in enumerate(file_names[:]):
+        # import pdb; pdb.set_trace()
         if file_index % process != token:
             continue
         segment_name = file_name.split('.')[0]
