@@ -21,7 +21,7 @@ parser.add_argument('--output_folder', type=str, default='./data/waymo/',
     help='the location of output information')
 parser.add_argument('--data_folder', type=str, help='location of tfrecords')
 parser.add_argument('--test', action='store_true', default=False)
-parser.add_argument('--train', action='store_true', default=False)
+parser.add_argument('--train', default=False)
 args = parser.parse_args()
 
 

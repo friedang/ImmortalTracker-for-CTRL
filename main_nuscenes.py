@@ -25,6 +25,7 @@ parser.add_argument('--result_folder', type=str, default='./mot_results/nuscenes
 parser.add_argument('--data_folder', type=str, default='./data/nuscenes/')
 parser.add_argument('--det_data_folder', type=str, default='./data/nuscenes/')
 parser.add_argument('--test', action='store_true', default=False)
+parser.add_argument('--train', default=False)
 args = parser.parse_args()
 
 
@@ -157,6 +158,10 @@ if __name__ == '__main__':
         args.data_folder = os.path.join(args.data_folder, 'test_2hz')
         args.det_data_folder = os.path.join(args.det_data_folder, 'test_2hz', 'detection')
         args.result_folder = os.path.join(args.result_folder, 'test_2hz')
+    elif args.train:
+        args.data_folder = os.path.join(args.data_folder, 'train_2hz')
+        args.det_data_folder = os.path.join(args.det_data_folder, 'train_2hz', 'detection')
+        args.result_folder = os.path.join(args.result_folder, 'train_2hz')
     else:
         args.data_folder = os.path.join(args.data_folder, 'validation_2hz')
         args.det_data_folder = os.path.join(args.det_data_folder, 'validation_2hz', 'detection')

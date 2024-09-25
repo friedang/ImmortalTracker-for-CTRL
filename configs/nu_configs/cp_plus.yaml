@@ -1,6 +1,6 @@
 running:
   covariance: default
-  score_threshold: 0.0 # 0.01
+  score_threshold: 0.005
   tracker: immortal  #([immortal,cp_plus])
   max_age_since_update:
     cp_plus: 2
@@ -8,21 +8,21 @@ running:
     immortal: 0
     cp_plus: 0
   match_type: bipartite
-  asso: iou
+  asso: giou #iou
   asso_thres:
     giou: 1.5
     iou: 0.9
     m_dis: 11
-  score_multiplier: 0.9
-  gpu: False # if true num process=15, if false 150 works
+  # score_multiplier: 1.5
+  # gpu: True # if true num process=15, if false 150 works
 
 data_loader:
-  nms: False
-  nms_thres: 0.99 # 0.1
-  backward: True
+  nms: True
+  nms_thres: 0.1
+  # backward: True
 
 merge:
-  max_time_since_update: 10
+  # max_time_since_update: 5
 
 
 # running:

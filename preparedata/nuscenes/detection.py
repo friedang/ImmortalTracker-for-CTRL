@@ -8,6 +8,7 @@ parser.add_argument('--det_name', type=str, default='cp')
 parser.add_argument('--file_path', type=str)
 parser.add_argument('--velo', action='store_true', default=False)
 parser.add_argument('--mode', type=str, default='2hz', choices=['20hz', '2hz'])
+parser.add_argument('--train', default=False)
 parser.add_argument('--test', action='store_true', default=False)
 args = parser.parse_args()
 
@@ -101,9 +102,10 @@ def main(det_name, file_path, detection_folder, data_folder, mode):
 if __name__ == '__main__':
     if args.test:
         data_folder = os.path.join(args.data_folder, 'test_{:}'.format(args.mode))
-        det_folder= os.path.join(data_folder,'detection')
+    elif args.train:
+        data_folder = os.path.join(args.data_folder, 'train_{:}'.format(args.mode))
     else:
         data_folder = os.path.join(args.data_folder, 'validation_{:}'.format(args.mode))
-        det_folder= os.path.join(data_folder,'detection')
-
+    
+    det_folder= os.path.join(data_folder,'detection')
     main(args.det_name, args.file_path, det_folder, data_folder, args.mode)

@@ -28,7 +28,7 @@ parser.add_argument('--output_folder', type=str, default='./data/waymo/',
     help='output folder')
 parser.add_argument('--process', type=int, default=1, help='use multiprocessing for acceleration')
 parser.add_argument('--test', action='store_true', default=False)
-parser.add_argument('--train', action='store_true', default=False)
+parser.add_argument('--train', default=False)
 args = parser.parse_args()
 
 

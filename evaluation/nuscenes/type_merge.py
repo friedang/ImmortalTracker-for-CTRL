@@ -9,11 +9,13 @@ parser.add_argument('--name', type=str, default='immortal')
 parser.add_argument('--obj_types', default='car,bus,trailer,truck,pedestrian,bicycle,motorcycle,construction_vehicle,barrier,traffic_cone')
 parser.add_argument('--result_folder', type=str, default='./mot_results/nuscenes/')
 parser.add_argument('--mode', type=str, default='2hz', choices=['20hz', '2hz'])
+parser.add_argument('--train', default=False)
 parser.add_argument('--test', action='store_true', default=False)
 args = parser.parse_args()
 
 
 def main(name, obj_types, result_folder):
+    print(f"MERGING RESULTS of {obj_types}")
     raw_results = list()
     for type_name in obj_types:
         path = os.path.join(result_folder, type_name, 'results.json')
@@ -43,6 +45,8 @@ def main(name, obj_types, result_folder):
 if __name__ == '__main__':
     if args.test:
         result_folder = os.path.join(args.result_folder, 'test')
+    elif args.train:
+        result_folder = os.path.join(args.result_folder, 'train')
     else:
         result_folder = os.path.join(args.result_folder, 'validation')
     if args.mode == '2hz':

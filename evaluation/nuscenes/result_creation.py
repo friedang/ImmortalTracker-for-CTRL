@@ -12,6 +12,7 @@ parser.add_argument('--obj_types', type=str, default='car,bus,trailer,truck,pede
 parser.add_argument('--result_folder', type=str, default='./mot_results/nuscenes/')
 parser.add_argument('--data_folder', type=str, default='./data/nuscenes/')
 parser.add_argument('--mode', type=str, default='2hz', choices=['20hz', '2hz'])
+parser.add_argument('--train', default=False)
 parser.add_argument('--test', action='store_true', default=False)
 args = parser.parse_args()
 
@@ -93,6 +94,9 @@ if __name__ == '__main__':
     if args.test:
         result_folder = os.path.join(args.result_folder, 'test')
         data_folder = os.path.join(args.data_folder, 'test')
+    if args.train:
+        result_folder = os.path.join(args.result_folder, 'train')
+        data_folder = os.path.join(args.data_folder, 'train')
     else:
         result_folder = os.path.join(args.result_folder, 'validation')
         data_folder = os.path.join(args.data_folder, 'validation')
