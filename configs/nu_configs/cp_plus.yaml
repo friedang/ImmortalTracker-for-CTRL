@@ -1,6 +1,6 @@
 running:
   covariance: default
-  score_threshold: 0.005
+  score_threshold: 0.1
   tracker: immortal  #([immortal,cp_plus])
   max_age_since_update:
     cp_plus: 2
@@ -18,7 +18,7 @@ running:
 
 data_loader:
   nms: True
-  nms_thres: 0.1
+  nms_thres: 0.5
   # backward: True
 
 merge:
