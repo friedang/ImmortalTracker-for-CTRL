@@ -1,3 +1,6 @@
+This is the orginal forked branch. The changes made for AnomalyAttention are on the branch: final_branch.
+
+
 # Immortal_tracker for CTRL
 ## This is a modified unofficial version of [ImmortalTracker](https://github.com/ImmortalTracker/ImmortalTracker), tailored to easier use for CTRL. We make the follow modifications:
 
